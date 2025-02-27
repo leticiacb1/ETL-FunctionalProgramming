@@ -1,11 +1,11 @@
 # ETL-FunctionalProgramming
-* Class repository : https://github.com/raulikeda/Insper-Funcional/tree/main
+Class repository : https://github.com/raulikeda/Insper-Funcional/tree/main
 
-**E**xtract : Collect data from various sources 
+* **E**xtract : Collect data from various sources 
 
-**T**ransform Clean and organize the data according to business rules 
+* **T**ransform Clean and organize the data according to business rules 
 
-**L**oad : Store the data in a destination data store
+* **L**oad : Store the data in a destination data store
 
 ### Prerequisite
 
