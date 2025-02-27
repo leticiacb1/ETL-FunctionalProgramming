@@ -1,5 +1,5 @@
 # ETL-FunctionalProgramming
-Class repository : https://github.com/raulikeda/Insper-Funcional/tree/main
+Data repository : https://github.com/leticiacb1/ETL-FunctionalProgramming-Data
 
 * **E**xtract : Collect data from various sources 
 
@@ -50,3 +50,12 @@ See more, [here](https://ocaml.org/docs/installing-ocaml).
    $ dune exec project_name
 ```
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).
+
+
+<div align="center">
+  
+**@2024, Insper**. 10° Semester, Computer Engineering.
+
+_Funcional Programming Discipline_
+  
+</div>
