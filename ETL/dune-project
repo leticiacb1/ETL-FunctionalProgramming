@@ -5,11 +5,11 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github leticiacb1/ETL-FunctionalProgramming))
 
-(authors "Author Name <author@example.com>")
+(authors "Leticia Coelho Barbosa <leticiacb1@al.insper.edu.br>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Leticia Coelho Barbosa <leticiacb1@al.insper.edu.br>")
 
 (license LICENSE)
 
@@ -17,10 +17,10 @@
 
 (package
  (name ETL)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml)
- (tags
-  ("add topics" "to describe" your project)))
+ (synopsis "Extract, Transform, Load")
+ (description "Using functional programming to extract information from an Excel, perform operations on the data and load the information into another file.")
+ (depends 
+    (ocaml (>= 4.14))
+    fmt))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

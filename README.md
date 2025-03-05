@@ -49,6 +49,25 @@ See more, [here](https://ocaml.org/docs/installing-ocaml).
    $ cd project_name
    $ dune exec project_name
 ```
+
+### Run
+
+Overview project information ate in file `ETL/dune-project`, with required dependencies.
+
+File `ETL/dune` define de module that will be executed.
+
+```bash
+# Update required dependencies
+$ dune pkg lock
+
+# Build
+$ dune build # or dune build hello_world.exe
+
+# Execute
+$ dune exec ./hello_world.ml
+  Hello, OCaml, Rust! 
+```
+
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).
 
 

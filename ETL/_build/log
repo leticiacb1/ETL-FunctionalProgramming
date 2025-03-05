@@ -1,7 +1,0 @@
-# dune init proj ETL
-# OCAMLPARAM: unset
-# Shared cache: enabled-except-user-rules
-# Shared cache location: /home/leticiacb/.cache/dune/db
-# Workspace root:
-# /home/leticiacb/Documents/FuncionalProgramming/ETL-FunctionalProgramming/ETL
-# Auto-detected concurrency: 8
