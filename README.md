@@ -32,7 +32,7 @@ See more, [here](https://ocaml.org/docs/installing-ocaml).
 
 ```bash
    # Install
-   $  opam install dune
+   $ opam install dune
 
    # Init project
    $ dune init proj project_name
@@ -57,6 +57,9 @@ Overview project information ate in file `ETL/dune-project`, with required depen
 File `ETL/dune` define de module that will be executed.
 
 ```bash
+# Activate env
+$ eval $(opam env) 
+
 # Update required dependencies
 $ dune pkg lock
 
@@ -64,7 +67,7 @@ $ dune pkg lock
 $ dune build # or dune build hello_world.exe
 
 # Execute
-$ dune exec ./hello_world.ml
+$ dune exec hello_world
   Hello, OCaml, Rust! 
 ```
 
