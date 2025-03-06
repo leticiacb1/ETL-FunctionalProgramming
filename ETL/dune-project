@@ -21,6 +21,9 @@
  (description "Using functional programming to extract information from an Excel, perform operations on the data and load the information into another file.")
  (depends 
     (ocaml (>= 4.14))
-    fmt))
+    fmt
+    cohttp-lwt-unix
+    csv
+    lwt_ssl))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

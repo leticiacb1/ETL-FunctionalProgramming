@@ -59,6 +59,7 @@ File `ETL/dune` define de module that will be executed.
 ```bash
 # Activate env
 $ eval $(opam env) 
+$ cd ETL/
 
 # Update required dependencies
 $ dune pkg lock
