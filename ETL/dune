@@ -1,8 +1,8 @@
 (subdir src
  (executable
-  (name hello_world)
-  (public_name hello_world)
+  (name main)
+  (public_name main)
   (libraries cohttp-lwt-unix csv fmt lwt lwt_ssl)
-  (modules http_call hello_world)
+  (modules read_csv http_call main)
  )
 )

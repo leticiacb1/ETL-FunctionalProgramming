@@ -10,10 +10,12 @@ open Cohttp_lwt_unix
     Input
     ------
       url : String
+        Endpoint from which the information will be retrieved 
 
     Output
     ------
-      content : url content
+      content : String 
+        Url content
 *)
 let fetch_content url =
   (* Make the HTTP request *)

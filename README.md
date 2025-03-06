@@ -65,11 +65,10 @@ $ cd ETL/
 $ dune pkg lock
 
 # Build
-$ dune build # or dune build hello_world.exe
+$ dune build # or dune build main.exe
 
 # Execute
-$ dune exec hello_world
-  Hello, OCaml, Rust! 
+$ dune exec main
 ```
 
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).
