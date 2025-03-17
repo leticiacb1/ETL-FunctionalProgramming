@@ -55,7 +55,7 @@ let to_order_item row =
       return : csv_record 
         Csv content in Record {transform_type} format
 *)
-let transform_csv transform_type csv_data =
+let csv_to_records transform_type csv_data =
   if transform_type = Constants.order 
     then List.map to_order csv_data
   else if transform_type = Constants.order_item 
