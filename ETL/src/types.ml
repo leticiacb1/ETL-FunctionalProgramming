@@ -3,7 +3,7 @@ module Types = struct
   type order = {
     id : int;
     client_id : int;
-    order_date : string;
+    date : string;
     status : string;
     origin : string;
   };;
@@ -16,8 +16,17 @@ module Types = struct
     tax : float;
   };;
 
-   type csv_record =
-   | Order of order
-   | OrderItem of order_item
-   
+  type result_record = {
+    order_id : int;
+    total_amount : float;
+    total_taxes : float;
+    date : string;
+    status : string;
+    origin : string;
+  };;
+
+  type csv_record =
+  | Order of order
+  | OrderItem of order_item;;
+
 end

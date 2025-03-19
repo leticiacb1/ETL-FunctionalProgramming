@@ -1,6 +1,18 @@
 open Constants
 open Types.Types
 
+(* Extract order items from csv_record list *)
+let extract_order_items records =
+  List.filter_map (function
+    | OrderItem oi -> Some oi
+    | _ -> None
+  ) records
+
+let extract_order records =
+    List.filter_map (function
+      | Order o -> Some o
+      | _ -> None
+    ) records
 
 (* 
   Specific transform for 'order' type 
@@ -11,7 +23,7 @@ let to_order row =
       Order { 
         id = int_of_string id_str;
         client_id = int_of_string client_id_str;
-        order_date = order_date_str;
+        date = order_date_str;
         status = status_str;
         origin = origin_str;
       }
@@ -31,6 +43,28 @@ let to_order_item row =
         tax = float_of_string tax_str;
       }
   | _ -> failwith " [ERROR] Invalid order_item CSV format"
+
+
+ (* let to_record row =
+    match row with
+    | [id_str; client_id_str; order_date_str; status_str; origin_str] -> 
+      Order { 
+        id = int_of_string id_str;
+        client_id = int_of_string client_id_str;
+        order_date = order_date_str;
+        status = status_str;
+        origin = origin_str;
+      }
+    | [order_id_str; product_id_str; quantity_str; price_str; tax_str] ->
+        OrderItem { 
+          order_id = int_of_string order_id_str;
+          product_id = int_of_string product_id_str;
+          quantity = int_of_string quantity_str;
+          price = float_of_string price_str;
+          tax = float_of_string tax_str;
+        }
+    | _ -> failwith " [ERROR] Invalid order or order_item CSV format" 
+*)
 
 
 (* 
