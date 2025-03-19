@@ -3,6 +3,6 @@
   (name main)
   (public_name main)
   (libraries cohttp-lwt-unix csv fmt lwt lwt_ssl)
-  (modules constants types csv_helper csv_reader http_call csv_processor main)
+  (modules constants types csv_helper csv_reader http_call csv_processor csv_writer main)
  )
 )

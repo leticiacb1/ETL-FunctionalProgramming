@@ -84,7 +84,10 @@ let () =
     (fun (r : result_record) ->
       Printf.printf "order_id: %d, total_amount: %.2f, total_taxes: %.2f, order_date: %s, status: %s, origin: %s\n"
         r.order_id r.total_amount r.total_taxes r.date r.status r.origin)
-    results;;
+    results;
+
+  (* Write to CSV file *)
+  Csv_writer.write_csv Constants.result_data_path results;
 
   (*
 Retorno é um csv com 3 campos : order_id , total_amount e total_taxes . total amount contém o total do pedido, ou seja, o somatório da receita de todos os

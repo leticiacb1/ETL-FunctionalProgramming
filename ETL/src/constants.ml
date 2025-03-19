@@ -4,4 +4,6 @@ module Constants = struct
   
   let order = "ORDER"
   let order_item = "ORDER_ITEM"
+
+  let result_data_path = "../Data/agg_order.csv"
 end
