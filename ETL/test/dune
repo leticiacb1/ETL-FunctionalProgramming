@@ -1,5 +1,5 @@
 (test
   (name processor_test)
-  (libraries my_lib ounit2)  ;; Allows test access to csv_processor
+  (libraries shared processor ounit2)
   (modules processor_test)
 )

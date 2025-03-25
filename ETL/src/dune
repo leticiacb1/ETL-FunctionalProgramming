@@ -1,13 +1,45 @@
-(library
- (name my_lib)  ;; Defines a library for src/ code
- (modules constants types csv_helper csv_reader http_call csv_processor csv_writer)
- (libraries cohttp cohttp-lwt cohttp-lwt-unix csv lwt lwt_ssl sqlite3)
- (wrapped false)
+(subdir shared
+  (library
+    (name shared)
+    (modules constants types)
+  )
+)
+
+(subdir helper
+  (library
+    (name helper)
+    (modules csv_helper)
+    (libraries shared)
+  )
+)
+
+(subdir extractor
+  (library
+    (name extractor)
+    (modules csv_reader http_call)
+    (libraries cohttp cohttp-lwt cohttp-lwt-unix)
+  )
+)
+
+(subdir processor
+  (library
+    (name processor)
+    (modules csv_processor)
+    (libraries shared)
+  )
+)
+
+(subdir loader
+  (library
+    (name loader)
+    (modules csv_writer)
+    (libraries csv sqlite3 shared)
+  )
 )
 
 (executable
  (name main)
  (public_name main)
  (modules main)
- (libraries my_lib) ;; Uses the src/ library
+ (libraries helper shared extractor processor loader) 
 )

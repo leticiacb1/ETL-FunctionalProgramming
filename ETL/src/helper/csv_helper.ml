@@ -1,5 +1,5 @@
-open Constants
-open Types.Types
+open Shared.Constants
+open Shared.Types.Types
 
 (* Extract order items from csv_record list *)
 let extract_order_items records =

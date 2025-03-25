@@ -1,6 +1,6 @@
 open OUnit2
-open Types.Types
-open Csv_processor
+open Shared.Types.Types
+open Processor.Csv_processor
 
 
 (* ----------------------- *)

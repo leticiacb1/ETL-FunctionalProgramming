@@ -1,4 +1,4 @@
-open Types.Types
+open Shared.Types.Types
 
 (*
   1. Realizar join das tabelas por order_id

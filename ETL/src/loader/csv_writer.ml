@@ -1,4 +1,4 @@
-open Types.Types
+open Shared.Types.Types
 
 open Sqlite3
 

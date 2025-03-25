@@ -1,5 +1,9 @@
-open Constants
-open Types.Types
+open Shared.Constants
+open Shared.Types.Types
+open Helper
+open Extractor
+open Processor
+open Loader
 
 let () =
 
