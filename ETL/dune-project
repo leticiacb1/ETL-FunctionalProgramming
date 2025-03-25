@@ -20,10 +20,12 @@
  (synopsis "Extract, Transform, Load")
  (description "Using functional programming to extract information from an Excel, perform operations on the data and load the information into another file.")
  (depends 
-    (ocaml (>= 4.14))
-    fmt
-    cohttp-lwt-unix
-    csv
-    lwt_ssl))
-
+    (ocaml (>= 4.14)) 
+    (cohttp (>= 6.1))
+    (cohttp-lwt (>= 6.1))
+    (cohttp-lwt-unix (>= 6.1))
+    (csv (>= 2.4))
+    (lwt_ssl (>= 1.2))
+  )
+)
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

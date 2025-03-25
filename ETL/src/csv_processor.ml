@@ -68,8 +68,6 @@ let filtered = List.filter_map (fun x -> x) numbers
 (* filtered = [1; 3; 5] *)
 
 
-
-
 let join_by_order_id orders_record order_items_record =
   let order_items = extract_order_items order_items_record in
   let order = extract_order orders_record in

@@ -57,18 +57,50 @@ Overview project information ate in file `ETL/dune-project`, with required depen
 File `ETL/dune` define de module that will be executed.
 
 ```bash
+$ opam install cohttp cohttp-lwt cohttp-lwt-unix \
+               csv \
+               lwt lwt_ssl \
+               sqlite3 \
+```
+
+```bash
 # Activate env
 $ eval $(opam env) 
 $ cd ETL/
 
-# Update required dependencies
-$ dune pkg lock
-
 # Build
-$ dune build # or dune build main.exe
+$ dune clean && dune build 
 
 # Execute
 $ dune exec main
+```
+
+Access sqlite3 table :
+
+```bash
+# Install
+$ sudo apt install sqlite3
+
+# Inside SQLite prompt
+$ sqlite3 ../Data/agg_order.db
+  
+  sqlite> .tables
+  sqlite> SELECT * FROM results;
+  sqlite> .exit
+```
+
+### Tests
+
+
+```bash
+
+$ opam install ounit2
+
+$ cd ETL/
+
+$ dune clean && dune build 
+
+$ dune runtest
 ```
 
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).

@@ -90,8 +90,8 @@ let to_order_item row =
         Csv content in Record {transform_type} format
 *)
 let csv_to_records transform_type csv_data =
-  if transform_type = Constants.order 
+  if transform_type = Constants.c_order 
     then List.map to_order csv_data
-  else if transform_type = Constants.order_item 
+  else if transform_type = Constants.c_order_item 
     then List.map to_order_item csv_data
   else failwith " [ERROR] Invalid transform_type"

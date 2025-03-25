@@ -38,8 +38,8 @@ let () =
     | header :: tail -> (header, tail)
     in
 
-  let (record_data1 : order list) = Csv_helper.extract_order (Csv_helper.csv_to_records Constants.order csv_data1) in 
-  let record_data2 = Csv_helper.extract_order_items (Csv_helper.csv_to_records Constants.order_item csv_data2) in
+  let (record_data1 : order list) = Csv_helper.extract_order (Csv_helper.csv_to_records Constants.c_order csv_data1) in 
+  let record_data2 = Csv_helper.extract_order_items (Csv_helper.csv_to_records Constants.c_order_item csv_data2) in
 
   Printf.printf "\nExtracted Header1: [ %s ]\n" (String.concat "; " header1);
   List.iter (fun o ->
@@ -87,15 +87,24 @@ let () =
     results;
 
   (* Write to CSV file *)
-  Csv_writer.write_csv Constants.result_data_path results;
+  Csv_writer.save_csv Constants.result_data_path results;
 
+  (* Load SQLite3 module *)
+  let db_filename = "../Data/agg_order.db" in
+  let tablename = "results" in
+  Csv_writer.save_data_database db_filename tablename results;
+  
   (*
-Retorno é um csv com 3 campos : order_id , total_amount e total_taxes . total amount contém o total do pedido, ou seja, o somatório da receita de todos os
-itens de um pedido. A receita é calculada através da multiplicação do preço pela quantidade.
-total_taxes contém o somatório do imposto pago em todos os itens. Considerar que o imposto é o
-percentual mutiplicado pela receita de cada item. O gestor gostaria de poder parametrizar a saída
-para status e origin específicos dos pedidos.
+   Next steps:
+   2. Fix files names 
+   3. add documentation in all functions
+   4. Refactor
+   5. Create unitary tests
+   6. Create a diagram and update README.md
+  *)
 
+
+(*
 Exemplo: status : complete, origin : online (O).
 Saída em CSV:
   order_id,total_amount,total_taxes

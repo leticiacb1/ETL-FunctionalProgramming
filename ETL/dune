@@ -2,7 +2,14 @@
  (executable
   (name main)
   (public_name main)
-  (libraries cohttp-lwt-unix csv fmt lwt lwt_ssl)
+  (libraries cohttp cohttp-lwt cohttp-lwt-unix csv lwt lwt_ssl sqlite3)
   (modules constants types csv_helper csv_reader http_call csv_processor csv_writer main)
- )
+ ) 
+)
+
+(subdir test
+ (test
+  (name processor_test)
+  (libraries ounit2 )
+  (modules processor_test))
 )
