@@ -16,7 +16,7 @@
 (subdir extractor
   (library
     (name extractor)
-    (modules csv_reader http_call)
+    (modules parser reader)
     (libraries cohttp cohttp-lwt cohttp-lwt-unix)
   )
 )

@@ -3,7 +3,7 @@ open Cohttp
 open Cohttp_lwt_unix
 
 
-(*Reference: https://github.com/mirage/ocaml-cohttp#client-tutorial*)
+(* Reference: https://github.com/mirage/ocaml-cohttp#client-tutorial *)
 (*
     Function that recive a string URL and return it content
     
@@ -17,7 +17,7 @@ open Cohttp_lwt_unix
       content : String 
         Url content
 *)
-let fetch_content url =
+let get_content url =
   (* Make the HTTP request *)
   Client.get (Uri.of_string url) >>= (fun (resp, body) ->
   
