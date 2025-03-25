@@ -1,12 +1,21 @@
-(*
+
 open OUnit2
-open My_library
+open Types.Types
+open Csv_processor
 
 let test_calculate_income _ =
   let item = { order_id = 1; product_id = 101; quantity = 2; price = 50.0; tax = 0.1 } in
-  assert_equal 100.0 (Csv_processor.calculate_income item)
+  assert_equal 100.0 (calculate_income item)
 
-let test_calculate_tax _ =
+let suite =
+  "Processor Tests" >::: [
+    "test_calculate_income" >:: test_calculate_income;  (* Add the test function to the suite *)
+  ]
+
+let () =
+  run_test_tt_main suite 
+
+(*let test_calculate_tax _ =
   let item = { order_id = 1; product_id = 101; quantity = 2; price = 50.0; tax = 0.1 } in
   let income = calculate_income item in
   assert_equal 10.0 (Csv_processor.calculate_tax item income)

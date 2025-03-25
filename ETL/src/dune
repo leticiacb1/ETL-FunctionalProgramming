@@ -1,0 +1,13 @@
+(library
+ (name my_lib)  ;; Defines a library for src/ code
+ (modules constants types csv_helper csv_reader http_call csv_processor csv_writer)
+ (libraries cohttp cohttp-lwt cohttp-lwt-unix csv lwt lwt_ssl sqlite3)
+ (wrapped false)
+)
+
+(executable
+ (name main)
+ (public_name main)
+ (modules main)
+ (libraries my_lib) ;; Uses the src/ library
+)
