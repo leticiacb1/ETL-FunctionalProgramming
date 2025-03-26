@@ -12,7 +12,11 @@ Data processing project built using OCaml. It focuses on efficiently **E**xtract
 > [!IMPORTANT]  
 > Data repository : https://github.com/leticiacb1/ETL-FunctionalProgramming-Data
 
-**#TODO: Diagram**
+<br>
+
+<img src = "Doc/Utils/ETL_diagram.png" />
+
+<br>
 
 ### 📌 Description
 
