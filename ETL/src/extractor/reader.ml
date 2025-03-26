@@ -1,5 +1,4 @@
 open Lwt
-open Cohttp
 open Cohttp_lwt_unix
 
 
@@ -19,16 +18,9 @@ open Cohttp_lwt_unix
 *)
 let get_content (url: string) : (string t) =
   (* Make the HTTP request *)
-  Client.get (Uri.of_string url) >>= (fun (resp, body) ->
-  
-    (* Extract the status and code *)
-    let status = Response.status resp in
-    let code = Code.code_of_status status in
-    Printf.printf " [FETCH] > Response code: %d\n" code;
-  
+  Client.get (Uri.of_string url) >>= (fun (_, body) ->  
     (* Convert the body to a string *)
     Cohttp_lwt.Body.to_string body >|= (fun body_string ->
-      Printf.printf " [FETCH] > Body of length: %d\n" (String.length body_string);
       body_string
     )
   )

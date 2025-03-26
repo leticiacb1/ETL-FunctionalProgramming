@@ -45,7 +45,11 @@ let save_csv (filename: string) (records: result_record list) : unit =
   let csv_out = Csv.to_channel oc in
   let headers = ["Order ID"; "Total Amount"; "Total Taxes"; "Date"; "Status"; "Origin"] in
   let rows = List.map result_record_to_csv_row records in
+  
   Csv.output_all csv_out (headers :: rows);
+
+  Printf.printf " [INFO] Data saved successfully on file %s ! \n" filename;
+  
   close_out oc;;
 
 (* 

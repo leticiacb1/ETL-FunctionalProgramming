@@ -28,5 +28,5 @@
 *)
 let split_header_and_data (content : string list list) : (string list * string list list) =
   match content with
-  | [] -> failwith " [ERROR] CSV data is empty! "
+  | [] -> failwith "\n [ERROR] CSV data is empty! \n"
   | header :: tail -> (header, tail)

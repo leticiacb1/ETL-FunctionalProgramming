@@ -49,7 +49,7 @@ let create_table (db : Sqlite3.db) (tablename : string) : unit =
       origin TEXT
     );" tablename in
   match Sqlite3.exec db query with
-  | Rc.OK -> Printf.printf "[INFO] Table %s created successfully.\n" tablename
+  | Rc.OK -> ()
   | _ -> Printf.eprintf "[ERROR] Creating table: %s\n" (errmsg db)
 
 (*
@@ -75,8 +75,8 @@ let insert_order (db : Sqlite3.db) (tablename : string) (record : Types.result_r
                               VALUES (%d, %f, %f, '%s', '%s', '%s');"
     tablename record.order_id record.total_amount record.total_taxes record.date record.status record.origin in               
   match Sqlite3.exec db query with
-  | Rc.OK -> Printf.printf "[INFO] Inserted data into %s\n" tablename
-  | _ -> Printf.eprintf "[ERROR] Inserting data: %s\n" (errmsg db)
+  | Rc.OK -> ()
+  | _ -> Printf.eprintf "\n [ERROR] Inserting data: %s\n" (errmsg db)
 
 let insert_orders (db : Sqlite3.db) (tablename : string) (data: Types.result_record list) : unit =
   List.iter (insert_order db tablename) data
@@ -101,10 +101,13 @@ let insert_orders (db : Sqlite3.db) (tablename : string) (data: Types.result_rec
 *)
 let save_data_database (filename : string) (tablename : string) (data : Types.result_record list) : unit =
   let db = Sqlite3.db_open filename in
+  
   clean_table db tablename;
   create_table db tablename;
   insert_orders db tablename data;
-  print_endline "[INFO] Data saved successfully on database!";
+  
+  Printf.printf "\n [INFO] Data saved successfully on database %s ! \n" filename;
+  
   ignore(Sqlite3.db_close db);
 
 (* 
