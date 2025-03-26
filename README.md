@@ -16,77 +16,20 @@ Data processing project built using OCaml. It focuses on efficiently **E**xtract
 
 ### 📌 Description
 
-As data input, we consume two tables. One stores **order** information and the other stores **product information in those orders**. Table examples :
+As data input, we consume two tables. One stores **order** information and the other stores **product information in those orders**. 
 
-<div style="display: flex; justify-content: space-between;">
+| id  | client_id | order_date           | status   | origin |
+|-----|-----------|----------------------|----------|--------|
+| 1   | 112       | 2024-10-02T03:05:39  | Pending  | P      |
+| 2   | 117       | 2024-08-17T03:05:39  | Complete | O      |
+| 3   | 120       | 2024-09-10T03:05:39  | Cancelled| O      |
 
-  <table style="width: 45%;">
-    <tr>
-      <th>id</th>
-      <th>client_id</th>
-      <th>order_date</th>
-      <th>status</th>
-      <th>origin</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>112</td>
-      <td>2024-10-02T03:05:39</td>
-      <td>Pending</td>
-      <td>P</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>117</td>
-      <td>2024-08-17T03:05:39</td>
-      <td>Complete</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>120</td>
-      <td>2024-09-10T03:05:39</td>
-      <td>Cancelled</td>
-      <td>O</td>
-    </tr>
-  </table>
+| order_id | product_id | quantity | price  | tax  |
+|----------|------------|----------|--------|------|
+| 12       | 224        | 8        | 139.42 | 0.12 |
+| 13       | 213        | 1        | 160.6  | 0.16 |
+| 2        | 203        | 7        | 110.37 | 0.15 |
 
-  <table style="width: 45%;">
-    <tr>
-      <th>order_id</th>
-      <th>product_id</th>
-      <th>quantity</th>
-      <th>price</th>
-      <th>tax</th>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>224</td>
-      <td>8</td>
-      <td>139.42</td>
-      <td>0.12</td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>213</td>
-      <td>1</td>
-      <td>160.6</td>
-      <td>0.16</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>203</td>
-      <td>7</td>
-      <td>110.37</td>
-      <td>0.15</td>
-    </tr>
-  </table>
-
-</div>
-
-
-
-<br>
 
 The goal of the project is to **aggregate information related to the total amount paid and the total taxes** for each order. 
 
@@ -95,7 +38,7 @@ The return should be **filtered** according to the **order status (Pending | Can
 
 ### ⚙️ Requirements
 
-##### **Ocaml**
+##### **1. Ocaml**
 ```bash
 $ sudo apt-get install opam
 $ ocaml --version
@@ -114,7 +57,7 @@ $ utop
 ```
 See more, [here](https://ocaml.org/docs/installing-ocaml).
 
-##### Dune 
+##### 2. Dune 
 
 ```bash
    # Install
@@ -141,7 +84,7 @@ See more, [here](https://ocaml.org/docs/installing-ocaml).
 See more, [here](https://dune.build/).
 
 
-##### Libraries
+##### 3. Libraries
 
 ```bash
 # Activate env
@@ -189,8 +132,6 @@ $ dune clean && dune build
 $ dune exec main
 ```
 
-<br>
-
 ##### 3. Tests
 
 ```bash
@@ -205,8 +146,6 @@ $ dune runtest
 ```
 
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).
-
-<br>
 
 ##### 4. Outputs
 
