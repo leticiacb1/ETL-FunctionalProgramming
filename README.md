@@ -38,7 +38,7 @@ The return should be **filtered** according to the **order status (Pending | Can
 
 ### ⚙️ Requirements
 
-##### **1. Ocaml**
+#### **1. Ocaml**
 ```bash
 $ sudo apt-get install opam
 $ ocaml --version
@@ -57,7 +57,7 @@ $ utop
 ```
 See more, [here](https://ocaml.org/docs/installing-ocaml).
 
-##### 2. Dune 
+#### 2. Dune 
 
 ```bash
    # Install
@@ -84,7 +84,7 @@ See more, [here](https://ocaml.org/docs/installing-ocaml).
 See more, [here](https://dune.build/).
 
 
-##### 3. Libraries
+#### 3. Libraries
 
 ```bash
 # Activate env
@@ -102,7 +102,7 @@ $ opam install cohttp cohttp-lwt cohttp-lwt-unix \
 
 Overview project information ate in file `ETL/dune-project`, with required dependencies.
 
-##### 1. Make sure you have all the necessary libraries and tools
+#### 1. Make sure you have all the necessary libraries and tools
 
 ```bash 
 $ ocaml --version
@@ -119,7 +119,7 @@ $ opam list | grep cohttp cohttp-lwt cohttp-lwt-unix \
 
 ```
 
-##### 2. Run
+#### 2. Run
 
 ```bash
 # Change directory
@@ -132,7 +132,7 @@ $ dune clean && dune build
 $ dune exec main
 ```
 
-##### 3. Tests
+#### 3. Tests
 
 ```bash
 # Change directory
@@ -147,11 +147,11 @@ $ dune runtest
 
 See more, [here](https://dune.readthedocs.io/en/stable/quick-start.html).
 
-##### 4. Outputs
+#### 4. Outputs
 
 Inside `Data/generated/` there will be two generated files, a **agg_order.csv** and a **agg_order.db** with the calculated result.
 
-###### SQLite3
+##### SQLite3
 
 Checking `agg_order.db` file :
 
