@@ -3,3 +3,21 @@
   (libraries shared processor ounit2)
   (modules processor_test)
 )
+
+(test
+  (name extractor_test)
+  (libraries cohttp cohttp-lwt cohttp-lwt-unix shared extractor ounit2) 
+  (modules extractor_test)
+)
+
+(test
+  (name loader_test)
+  (libraries csv sqlite3 loader ounit2) 
+  (modules loader_test)
+)
+
+(test
+  (name helper_test)
+  (libraries shared helper ounit2) 
+  (modules helper_test)
+)
