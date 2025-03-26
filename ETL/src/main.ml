@@ -1,5 +1,5 @@
 open Shared.Constants
-open Shared.Types.Types
+open Shared.Types
 open Helper
 open Extractor
 open Processor
@@ -7,38 +7,32 @@ open Loader
 
 let () =
 
-  (* ------ Extract ------ *)
+  (* -------------------- *)
+  (*        READER        *)
+  (* -------------------- *)
   
   (* Get content from Data repository *)
-  let content1 = Lwt_main.run (Reader.get_content Constants.url_order_csv) in
-  let content2 = Lwt_main.run (Reader.get_content Constants.url_order_item_csv) in
+  let order_raw_data = Lwt_main.run (Reader.get_content Constants.url_order_csv) in
+  let order_item_raw_data = Lwt_main.run (Reader.get_content Constants.url_order_item_csv) in
 
   (* Read content in csv format*)
-  let csv_content1 = Parser.parse_csv content1 in
-  let csv_content2 = Parser.parse_csv content2  in
+  let csv_order = Parser.parse_csv order_raw_data in
+  let csv_order_item = Parser.parse_csv order_item_raw_data in
 
-  (* ------ Tranform to Records ------ *)
-  (* Extract header and remaining rows safely *)
-  let (header1, csv_data1) =
-    match csv_content1 with
-    | [] -> failwith "[ERROR] CSV data 1 is empty!"
-    | header :: tail -> (header, tail)
-    in
+  (* Extract header and data *)
+  let ( _ , csv_order_data) = Extractor_utils.split_header_and_data csv_order in
+  let ( _ , csv_order_item_data) = Extractor_utils.split_header_and_data csv_order_item in
 
-  let (header2, csv_data2) =
-    match csv_content2 with
-    | [] -> failwith "[ERROR] CSV data 2 is empty!"
-    | header :: tail -> (header, tail)
-    in
+  (* -------------------- *)
+  (*        HELPER        *)
+  (* -------------------- *)
 
-  let (record_data1 : order list) = Csv_helper.extract_order (Csv_helper.transform Csv_helper.to_order csv_data1) in 
-  let record_data2 = Csv_helper.extract_order_items (Csv_helper.transform Csv_helper.to_order_item csv_data2) in
+  let (order_record : Types.order list) = Helper_utils.get_orders (Mapper.run (Order.transform) (csv_order_data)) in 
+  let (order_item_record : Types.order_item list) = Helper_utils.get_order_items (Mapper.run (Order_item.transform) (csv_order_item_data)) in
 
-  Printf.printf "\nExtracted Header1: [ %s ]\n" (String.concat "; " header1);
-  Printf.printf "\nExtracted Header2: [ %s ]\n" (String.concat "; " header2);
-
-
-  (* ------ Process data ------ *)
+  (* -------------------- *)
+  (*       PROCESSOR      *)
+  (* -------------------- *)
 
   (* Get user information *)
   print_string " [INPUT] Enter the filter (status = Pending , Complete or Cancelled): ";
@@ -48,13 +42,18 @@ let () =
   let input_origin = read_line () in
   
   (* Filter order list using user status and origin *)
-  let (filtered_record_data1 : order list) = Csv_processor.filter_order record_data1 input_status input_origin in
-  Printf.printf "\nFilter orders using status = [ %s ] and origin = [ %s ]\n" input_status input_origin;
+  let (filter_order_record : Types.order list) = Filter.order_by order_record input_status input_origin in
+  Printf.printf "\n [INFO] Filter orders using status = [ %s ] and origin = [ %s ]\n" input_status input_origin;
 
-  let results = Csv_processor.agg_information record_data2 filtered_record_data1 in
+  (* Grouping information *)
+  let results = Summary.run order_item_record filter_order_record in
+
+  (* -------------------- *)
+  (*         LOADER       *)
+  (* -------------------- *)
 
   (* Write to CSV file *)
   Csv_writer.save_csv Constants.csv_data_path results;
 
-  (* Load SQLite3 module *)
-  Csv_writer.save_data_database Constants.db_data_path Constants.db_tablename results;
+  (* Load in SQLite3 database *)
+  Database_writer.save_data_database Constants.db_data_path Constants.db_tablename results;

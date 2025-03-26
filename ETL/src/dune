@@ -8,7 +8,7 @@
 (subdir helper
   (library
     (name helper)
-    (modules csv_helper)
+    (modules helper_utils order order_item mapper)
     (libraries shared)
   )
 )
@@ -16,7 +16,7 @@
 (subdir extractor
   (library
     (name extractor)
-    (modules parser reader)
+    (modules extractor_utils parser reader)
     (libraries cohttp cohttp-lwt cohttp-lwt-unix)
   )
 )
@@ -24,7 +24,7 @@
 (subdir processor
   (library
     (name processor)
-    (modules csv_processor)
+    (modules filter calculator summary)
     (libraries shared)
   )
 )
@@ -32,7 +32,7 @@
 (subdir loader
   (library
     (name loader)
-    (modules csv_writer)
+    (modules csv_writer database_writer)
     (libraries csv sqlite3 shared)
   )
 )

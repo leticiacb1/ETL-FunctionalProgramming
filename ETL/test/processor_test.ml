@@ -1,6 +1,6 @@
 open OUnit2
 open Shared.Types.Types
-open Processor.Csv_processor
+open Processor
 
 
 (* ----------------------- *)
@@ -32,44 +32,38 @@ let mock_origin = "O"
 
 let test_calculate_income _ =
   let expected_result = 100.0 in
-  let result_obtained = calculate_income mock_order_item in
+  let result_obtained = Calculator.calculate_income mock_order_item in
   
   assert_equal expected_result result_obtained
 
 let test_calculate_tax _ =
   let expected_result = 10.0 in
-  let income = calculate_income mock_order_item in
-  let result_obtained = calculate_tax mock_order_item income in
+  let income = Calculator.calculate_income mock_order_item in
+  let result_obtained = Calculator.calculate_taxes mock_order_item income in
 
   assert_equal expected_result result_obtained
 
-let test_process_order _ =
-  let expected_result = (1, 100.0, 10.0) in
-  let result_obtained = process_order mock_order_item in
-  
-  assert_equal expected_result result_obtained
-
-let test_calculate_agg _ =
+let test_group_by _ =
   let expected_total_amount = 200.0 in
   let expected_total_taxes = 30.0 in
-  let total_amount_obtained, total_taxes_obtained = calculate_agg mock_order_id mock_order_items in
+  let total_amount_obtained, total_taxes_obtained = Summary.group_by mock_order_id mock_order_items in
   
   assert_equal expected_total_amount total_amount_obtained;
   assert_equal expected_total_taxes total_taxes_obtained
 
-let test_agg_information _ =
+let test_summary _ =
   let expected_result = [
     { order_id = 1; total_amount = 200.0; total_taxes = 30.0; date = "03/25/2025"; status = "Pending"; origin = "O" };
     { order_id = 2; total_amount = 200.0; total_taxes = 30.0; date = "03/24/2025"; status = "Cancelled"; origin = "P" };
     { order_id = 3; total_amount = 150.0; total_taxes = 15.0; date = "03/23/2025"; status = "Complete"; origin = "O" };
   ] in
-  let result_obtained = agg_information mock_order_items mock_orders in
+  let result_obtained = Summary.run mock_order_items mock_orders in
   
   assert_equal expected_result result_obtained
 
 let test_filter_order _ =
   let expected_result = [{ id = 3; client_id = 1002; date = "03/23/2025"; status = "Complete"; origin = "O" }] in
-  let result_obtained = filter_order mock_orders mock_status mock_origin in
+  let result_obtained = Filter.order_by mock_orders mock_status mock_origin in
 
   assert_equal expected_result result_obtained
 
@@ -81,9 +75,8 @@ let pipeline =
   "Processor Tests" >::: [
     "test_calculate_income" >:: test_calculate_income;
     "test_calculate_tax" >:: test_calculate_tax;
-    "test_process_order" >:: test_process_order;
-    "test_calculate_agg" >:: test_calculate_agg;
-    "test_agg_information" >:: test_agg_information;
+    "test_group_by" >:: test_group_by;
+    "test_summary" >:: test_summary;
     "test_filter_order" >:: test_filter_order
   ]
 
