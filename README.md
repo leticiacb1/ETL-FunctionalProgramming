@@ -18,7 +18,7 @@ Data processing project built using OCaml. It focuses on efficiently **E**xtract
 
 <br>
 
-Read the detailed project report [here](https://github.com/leticiacb1/ETL-FunctionalProgramming/blob/main/Report/Utils/report.pdf).
+Read the detailed project report [here](https://github.com/leticiacb1/ETL-FunctionalProgramming/blob/main/Report/report.pdf).
 
 ### 📌 Description
 
