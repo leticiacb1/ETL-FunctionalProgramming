@@ -14,9 +14,11 @@ Data processing project built using OCaml. It focuses on efficiently **E**xtract
 
 <br>
 
-<img src = "Doc/Utils/ETL_diagram.png" />
+<img src = "Report/Utils/ETL_diagram.png" />
 
 <br>
+
+Read the detailed project report [here](https://github.com/leticiacb1/ETL-FunctionalProgramming/blob/main/Report/Utils/report.pdf).
 
 ### 📌 Description
 
@@ -39,6 +41,13 @@ The goal of the project is to **aggregate information related to the total amoun
 
 The return should be **filtered** according to the **order status (Pending | Cancelled | Complete)** and the desired **store type (O - Online | P - Physical)**.
 
+
+
+| **Order ID** | **Total Amount** | **Total Taxes** | **Date**               | **Status** | **Origin** |
+|--------------|------------------|-----------------|------------------------|------------|------------|
+| 4            | 3086.71          | 422.5537        | 2024-03-11T03:05:39    | Pending    | O          |
+| 6            | 1757.79          | 249.7358        | 2024-04-18T03:05:39    | Pending    | O          |
+| 9            | 785.2            | 109.928         | 2025-01-08T03:05:39    | Pending    | O          |       
 
 ### ⚙️ Requirements
 
