@@ -184,7 +184,7 @@ $ sqlite3 ../Data/agg_order.db
 
 <div align="center">
   
-**@2024, Insper**. 10° Semester, Computer Engineering.
+**@2025, Insper**. 10° Semester, Computer Engineering.
 
 _Funcional Programming Discipline_
   
